@@ -1,14 +1,48 @@
 # Elevate-SQL-INTERNSHIP-TASK-4
 
 
--- Simple SQL Intern Task 4
--- Aggregate Functions + Group By + Having
+# SQL Intern Task 4 – Aggregate Functions and Grouping
 
--- Create a new database
+This task is about learning how to use basic SQL functions to summarize data.
+
+---
+
+## ✔ What I Did (Simple Explanation)
+
+### 1. Created a Database  
+Made a new database to store the Sales table.
+
+### 2. Created a Table  
+Created a table called **Sales** with:
+- Product  
+- Category  
+- Quantity  
+- Price  
+
+### 3. Inserted Data  
+Added sample data into the table.
+
+### 4. Used Aggregate Functions  
+- `SUM()` → total  
+- `AVG()` → average  
+- `COUNT()` → number of rows  
+
+### 5. Used GROUP BY  
+Grouped data by **Category** to get totals and averages for each group.
+
+### 6. Used HAVING  
+Filtered grouped data using conditions like:
+- Total quantity > 10  
+- Average price > 1000  
+
+---
+
+## ✔ SQL Code Used
+
+```sql
 CREATE DATABASE IF NOT EXISTS SQL_INTERN_TASK_4;
 USE SQL_INTERN_TASK_4;
 
--- Create the Sales table
 CREATE TABLE Sales (
     SaleID INTEGER PRIMARY KEY,
     Product VARCHAR(50),
@@ -17,7 +51,6 @@ CREATE TABLE Sales (
     Price DECIMAL(10,2)
 );
 
--- Insert sample values
 INSERT INTO Sales (SaleID, Product, Category, Quantity, Price) VALUES
 (1, 'Shirt', 'Clothing', 5, 400),
 (2, 'Jeans', 'Clothing', 3, 1200),
@@ -28,15 +61,12 @@ INSERT INTO Sales (SaleID, Product, Category, Quantity, Price) VALUES
 (7, 'Keyboard', 'Electronics', 4, 1500),
 (8, 'T-shirt', 'Clothing', 8, 350);
 
--- Show all data
 SELECT * FROM Sales;
 
--- Aggregate functions
 SELECT SUM(Quantity) AS Total_Quantity FROM Sales;
 SELECT AVG(Price) AS Average_Price FROM Sales;
 SELECT COUNT(*) AS Total_Records FROM Sales;
 
--- Group by category
 SELECT Category, SUM(Quantity) AS Total_Quantity
 FROM Sales
 GROUP BY Category;
@@ -49,7 +79,6 @@ SELECT Category, COUNT(*) AS Total_Products
 FROM Sales
 GROUP BY Category;
 
--- Using HAVING to filter groups
 SELECT Category, SUM(Quantity) AS Total_Quantity
 FROM Sales
 GROUP BY Category
